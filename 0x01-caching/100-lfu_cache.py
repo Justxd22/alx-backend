@@ -32,6 +32,8 @@ class LFUCache(BaseCaching):
 
     def put(self, key, value):
         """Put to cache."""
+        if not key or not value:
+            return None
         if key in self.cache_data:
             self.cache_data[key] = value
             self._update_freq(key)
