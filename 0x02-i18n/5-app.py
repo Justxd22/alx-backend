@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """Flask Application."""
 from flask import Flask, render_template, make_response, jsonify, request, g
 from flask_babel import Babel
@@ -23,6 +23,7 @@ users = {
     3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -52,10 +53,12 @@ def get_user():
         return users.get(int(user))
     return None
 
+
 @app.before_request
 def before_request() -> None:
     """Things to run before response."""
     setattr(g, 'user', get_user())
+
 
 @app.route('/')
 def hello_world():
