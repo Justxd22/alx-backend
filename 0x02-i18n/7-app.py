@@ -51,7 +51,7 @@ def get_locale():
         if locale and locale in Config.LANGUAGES:
             return locale
 
-
+@babel.timezoneselector
 def get_timezone():
     """Choose timezone."""
     priority = [
